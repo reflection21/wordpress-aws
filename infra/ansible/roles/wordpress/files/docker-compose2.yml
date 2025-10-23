@@ -1,0 +1,37 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "81:80" # Map host port 8000 to container port 80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: wordpresspassword
+      WORDPRESS_DB_NAME: wordpressdb
+      restart: always
+    volumes:
+      - wp-content2:/var/www/html/wp-content # Persist WordPress content
+    depends_on:
+      - db
+    networks:
+      - wordpress2
+  db:
+    image: mysql:5.7 # Or mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: wordpressdb
+      MYSQL_USER: wordpressuser
+      MYSQL_PASSWORD: wordpresspassword
+      restart: always
+    volumes:
+      - mysql_data2:/var/lib/mysql # Persist database data
+    networks:
+      - wordpress2
+
+volumes:
+  mysql_data2:
+  wp-content2:
+
+networks:
+  wordpress2:
+    driver: bridge

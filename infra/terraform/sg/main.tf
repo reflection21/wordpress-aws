@@ -81,3 +81,23 @@ resource "aws_security_group_rule" "egress_8081_alb" {
   source_security_group_id = aws_security_group.wordpress.id
   security_group_id        = aws_security_group.load_balancer.id
 }
+
+resource "aws_security_group_rule" "ingress_81_wordpress" {
+  description              = "ingress 8081 port"
+  type                     = "ingress"
+  from_port                = 81
+  to_port                  = 81
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.load_balancer.id
+  security_group_id        = aws_security_group.wordpress.id
+}
+
+resource "aws_security_group_rule" "egress_81_alb" {
+  description              = "egress 8081 port"
+  type                     = "egress"
+  from_port                = 81
+  to_port                  = 81
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.wordpress.id
+  security_group_id        = aws_security_group.load_balancer.id
+}

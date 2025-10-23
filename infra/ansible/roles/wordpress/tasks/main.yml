@@ -56,3 +56,30 @@
     state: present
   become: true
   tags: install_wordpress
+## 2
+- name: /home/ubuntu/site_2
+  ansible.builtin.file:
+    path: /home/ubuntu/site_2  # путь к папке
+    state: directory               # обязательно указываем, что создаем директорию
+    owner: ubuntu                  # владелец (необязательно)
+    group: ubuntu                  # группа (необязательно)
+    mode: "0755"                   # права доступа (необязательно)
+  become: true
+  tags: install_wordpress
+
+- name: Copy docker-compose2.yml
+  copy:
+    src: docker-compose2.yml
+    dest: /home/ubuntu/site_2/docker-compose.yml
+    owner: ubuntu
+    group: ubuntu
+    mode: "0755"  
+  become: true
+  tags: install_wordpress
+
+- name: Start docker-compose2
+  community.docker.docker_compose_v2:
+    project_src: /home/ubuntu/site_2/
+    state: present
+  become: true
+  tags: install_wordpress
