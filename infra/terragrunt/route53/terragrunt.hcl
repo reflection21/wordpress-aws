@@ -1,5 +1,5 @@
 terraform {
-  source = "../../terraform/sg/"
+  source = "../../terraform/route53/"
 }
 
 
@@ -8,11 +8,11 @@ include "root" {
   expose = true # include variables of parents file
 }
 
-dependency "vpc" {
-    config_path = "../vpc"
+dependency "alb" {
+    config_path = "../alb"
 }
 
 
 inputs = {
-    vpc_id = dependency.vpc.outputs.vpc_id
+    domain_name = "brigajani.website"
 }

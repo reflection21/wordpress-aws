@@ -20,10 +20,21 @@ resource "aws_security_group" "load_balancer" {
 
 # allow all trafic to loadbalancer from internet on 80 port
 resource "aws_security_group_rule" "ingress_traffic_to_lb_80" {
-  description       = "allow traffic to lb"
+  description       = "allow HTTP traffic to lb"
   type              = "ingress"
   from_port         = 80
   to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.load_balancer.id
+}
+
+# allow all trafic to loadbalancer from internet on 80 port
+resource "aws_security_group_rule" "ingress_traffic_to_lb_443" {
+  description       = "allow HTTPS traffic to lb"
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.load_balancer.id
