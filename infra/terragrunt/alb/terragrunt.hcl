@@ -19,8 +19,8 @@ dependency "ec2" {
     config_path = "../ec2"
 }
 
-dependency "ssl" {
-    config_path = "../ssl"
+dependency "acm" {
+    config_path = "../acm"
 }
 
 dependency "route53" {
@@ -32,6 +32,7 @@ inputs = {
   public_subnet_id = dependency.vpc.outputs.public_subnet_id
   vpc_id = dependency.vpc.outputs.vpc_id
   wordpress_server = dependency.ec2.outputs.wordpress_server_id
-  validated_certificate = dependency.ssl.outputs.validate_cert
+  validated_certificate = dependency.acm.outputs.validate_cert
   route53_zone_id = dependency.route53.outputs.route53_zone_id
+  domain_name = "brigajani.website"
 }

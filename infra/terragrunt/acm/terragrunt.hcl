@@ -1,5 +1,5 @@
 terraform {
-  source = "../../terraform/ssl/"
+  source = "../../terraform/acm/"
 }
 
 
@@ -14,6 +14,6 @@ dependency "route53" {
 
 inputs = {
     domain_name = "brigajani.website"
-    route53_zone_id = dependency.outputs.route53.route53_zone_id
+    route53_zone_id = dependency.route53.outputs.route53_zone_id
 }
 

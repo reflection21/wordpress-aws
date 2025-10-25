@@ -8,7 +8,7 @@ resource "aws_acm_certificate" "cert" {
   }
 
   tags = {
-    "Name" = "${var.deployment_prefix}-cert"
+    "Name" = "${var.deployment_prefix}-tls-cert"
   }
 }
 # validate cert
@@ -28,6 +28,7 @@ resource "aws_acm_certificate" "cert" {
     type            = each.value.type
     zone_id         = var.route53_zone_id
   }
+  
   # wait for issued cert
   resource "aws_acm_certificate_validation" "cert_validation_complete" {
     certificate_arn         = aws_acm_certificate.cert.arn

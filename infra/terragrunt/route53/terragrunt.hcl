@@ -8,11 +8,6 @@ include "root" {
   expose = true # include variables of parents file
 }
 
-dependency "alb" {
-    config_path = "../alb"
-}
-
-
 inputs = {
     domain_name = "brigajani.website"
 }
