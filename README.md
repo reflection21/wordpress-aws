@@ -1,1 +1,1 @@
-### aws-wordpress
+### worpress-aws
