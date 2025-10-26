@@ -20,7 +20,7 @@ resource "aws_security_group" "load_balancer" {
 
 # allow all trafic to loadbalancer from internet on 80 port
 resource "aws_security_group_rule" "ingress_traffic_to_lb_80" {
-  description       = "allow traffic to lb"
+  description       = "allow HTTP traffic to lb"
   type              = "ingress"
   from_port         = 80
   to_port           = 80
@@ -29,16 +29,26 @@ resource "aws_security_group_rule" "ingress_traffic_to_lb_80" {
   security_group_id = aws_security_group.load_balancer.id
 }
 
+# allow all trafic to loadbalancer from internet on 80 port
+resource "aws_security_group_rule" "ingress_traffic_to_lb_443_2" {
+  description       = "allow HTTPS traffic to lb"
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.load_balancer.id
+}
 
-# allow traffic to app from lb
-resource "aws_security_group_rule" "egress_traffic_from_lb_80" {
-  description              = "allow traffic to app from lb"
-  type                     = "egress"
-  from_port                = 80
-  to_port                  = 80
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.wordpress.id
-  security_group_id        = aws_security_group.load_balancer.id
+# allow 0.0.0.0 lb
+resource "aws_security_group_rule" "ingress_traffic_to_lb_443" {
+  description       = "allow all traffic"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = -1
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.load_balancer.id
 }
 
 # allow traffic to app from lb
@@ -72,32 +82,3 @@ resource "aws_security_group_rule" "ingress_8081_wordpress" {
   security_group_id        = aws_security_group.wordpress.id
 }
 
-resource "aws_security_group_rule" "egress_8081_alb" {
-  description              = "egress 8081 port"
-  type                     = "egress"
-  from_port                = 8081
-  to_port                  = 8081
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.wordpress.id
-  security_group_id        = aws_security_group.load_balancer.id
-}
-
-resource "aws_security_group_rule" "ingress_81_wordpress" {
-  description              = "ingress 8081 port"
-  type                     = "ingress"
-  from_port                = 81
-  to_port                  = 81
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.load_balancer.id
-  security_group_id        = aws_security_group.wordpress.id
-}
-
-resource "aws_security_group_rule" "egress_81_alb" {
-  description              = "egress 8081 port"
-  type                     = "egress"
-  from_port                = 81
-  to_port                  = 81
-  protocol                 = "tcp"
-  source_security_group_id = aws_security_group.wordpress.id
-  security_group_id        = aws_security_group.load_balancer.id
-}

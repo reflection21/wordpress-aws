@@ -135,3 +135,7 @@ Thumbs.db
 .venv/*
 
 .pre-commit
+
+infra/terragrunt/backend.tf
+
+infra/terragrunt/version.tf
