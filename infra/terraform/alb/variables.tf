@@ -23,10 +23,6 @@ variable "validated_certificate" {
   description = "validated certificate"
 }
 
-variable "domain_name" {
-  type        = string
-  description = "dns for site"
-}
 
 variable "route53_zone_id" {
   type = string

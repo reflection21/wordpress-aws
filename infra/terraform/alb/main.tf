@@ -28,15 +28,35 @@ resource "aws_lb_listener" "https_listener" {
   certificate_arn   = var.validated_certificate
 
   default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.wordpress_tg.arn
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Not Found"
+      status_code  = "404"
+    }
   }
 }
 
-#Target group for app
+# tg wordpress
 resource "aws_lb_target_group" "wordpress_tg" {
   name     = "wordpress-tg"
   port     = 80
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+  health_check {
+    path                = "/wp-admin/install.php"
+    healthy_threshold   = 3
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 30
+    matcher             = "200"
+  }
+}
+
+# tg adminer
+resource "aws_lb_target_group" "adminer_tg" {
+  name     = "adminer-tg"
+  port     = 8081
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
@@ -49,14 +69,13 @@ resource "aws_lb_target_group" "wordpress_tg" {
   }
 }
 
-#Target group attachment wordpress
+# tg attachment wordpress
 resource "aws_lb_target_group_attachment" "wordpress_attach" {
-  count            = length(var.wordpress_server)
   target_group_arn = aws_lb_target_group.wordpress_tg.arn
   target_id        = var.wordpress_server
   port             = 80
 }
-
+# tg attachment adminer
 resource "aws_lb_listener_rule" "adminer_rule" {
   listener_arn = aws_lb_listener.http_listener.arn
   priority     = 10
@@ -73,38 +92,83 @@ resource "aws_lb_listener_rule" "adminer_rule" {
   }
 }
 
-resource "aws_lb_target_group" "adminer_tg" {
-  name     = "adminer-tg"
-  port     = 8081
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
-  health_check {
-    path                = "/"
-    healthy_threshold   = 3
-    unhealthy_threshold = 2
-    timeout             = 5
-    interval            = 30
-    matcher             = "200"
-  }
-}
-
-#Target group attachment wordpress
+# tg attachment wordpress
 resource "aws_lb_target_group_attachment" "adminer_attach" {
-  count            = length(var.wordpress_server)
   target_group_arn = aws_lb_target_group.adminer_tg.arn
   target_id        = var.wordpress_server
   port             = 8081
 }
 
-# dns record for alb
-resource "aws_route53_record" "app_dns" {
+# dns A record for alb
+resource "aws_route53_record" "lb_record" {
   zone_id = var.route53_zone_id
-  name    = var.domain_name
+  name    = "brigajani.website"
   type    = "A"
 
   alias {
     name                   = aws_lb.alb.dns_name
     zone_id                = aws_lb.alb.zone_id
     evaluate_target_health = true
+  }
+}
+
+# dns A record for alb 
+resource "aws_route53_record" "lb_record_www" {
+  zone_id = var.route53_zone_id
+  name    = "www"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.alb.dns_name
+    zone_id                = aws_lb.alb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+
+# dns A record for alb 
+resource "aws_route53_record" "lb_record_api" {
+  zone_id = var.route53_zone_id
+  name    = "api"
+  type    = "A"
+
+  alias {
+    name                   = aws_lb.alb.dns_name
+    zone_id                = aws_lb.alb.zone_id
+    evaluate_target_health = true
+  }
+}
+
+# www.brigajani.website → WordPress
+resource "aws_lb_listener_rule" "www_rule" {
+  listener_arn = aws_lb_listener.https_listener.arn
+  priority     = 10
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.wordpress_tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["www.brigajani.website"]
+    }
+  }
+}
+
+# api.brigajani.website → API
+resource "aws_lb_listener_rule" "api_rule" {
+  listener_arn = aws_lb_listener.https_listener.arn
+  priority     = 20
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.adminer_tg.arn
+  }
+
+  condition {
+    host_header {
+      values = ["api.brigajani.website"]
+    }
   }
 }

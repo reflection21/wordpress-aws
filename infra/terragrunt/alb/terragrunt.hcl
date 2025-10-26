@@ -3,7 +3,7 @@ terraform {
 }
 
 include "root" {
-  path   = find_in_parent_folders("root.hcl")
+  path   = find_in_parent_folders()
   expose = true # include variables of parents file
 }
 
@@ -34,5 +34,4 @@ inputs = {
   wordpress_server = dependency.ec2.outputs.wordpress_server_id
   validated_certificate = dependency.acm.outputs.validate_cert
   route53_zone_id = dependency.route53.outputs.route53_zone_id
-  domain_name = "brigajani.website"
 }
