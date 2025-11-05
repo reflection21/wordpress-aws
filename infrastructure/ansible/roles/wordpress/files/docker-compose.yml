@@ -1,0 +1,30 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: wordpress-rds.ct4eisyau5su.eu-north-1.rds.amazonaws.com:3306
+      WORDPRESS_DB_USER: wordpressuser
+      WORDPRESS_DB_PASSWORD: "Jd5u8p>8(YVe3.IQFh5atRAxV?~s"
+      WORDPRESS_DB_NAME: wordpressdb
+    restart: always
+    volumes:
+      - wp-content:/var/www/html/wp-content
+    networks:
+      - wordpress
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - wordpress
+
+volumes:
+  wp-content:
+
+networks:
+  wordpress:
+    driver: bridge
