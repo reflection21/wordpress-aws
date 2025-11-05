@@ -76,7 +76,7 @@ module "rds" {
   parameters = [
     {
       name  = "require_secure_transport"
-      value = "0"  # if value "1" need cert for app
+      value = "0" # if value "1" need cert for app
     }
   ]
   tags = {

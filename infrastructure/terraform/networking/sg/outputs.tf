@@ -9,6 +9,6 @@ output "lb_sg" {
 }
 
 output "mysql_sg" {
-  value = aws_security_group.rds.id
+  value       = aws_security_group.rds.id
   description = "mysql sg"
 }

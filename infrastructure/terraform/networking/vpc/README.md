@@ -3,13 +3,16 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.17.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.17.0 |
 
 ## Modules
 
@@ -19,18 +22,18 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_eip.nat_eip](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/eip) | resource |
-| [aws_internet_gateway.igw](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) | resource |
-| [aws_nat_gateway.nat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/nat_gateway) | resource |
-| [aws_route_table.public_rt](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table.wordpress_rt](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table) | resource |
-| [aws_route_table_association.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_route_table_association.wordpress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association) | resource |
-| [aws_subnet.public](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.rds](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_subnet.wordpress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [aws_vpc.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
-| [aws_availability_zones.az](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
+| [aws_eip.nat_eip](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/eip) | resource |
+| [aws_internet_gateway.igw](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/internet_gateway) | resource |
+| [aws_nat_gateway.nat](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/nat_gateway) | resource |
+| [aws_route_table.public_rt](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route_table) | resource |
+| [aws_route_table.wordpress_rt](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route_table) | resource |
+| [aws_route_table_association.public](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route_table_association) | resource |
+| [aws_route_table_association.wordpress](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route_table_association) | resource |
+| [aws_subnet.public](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/subnet) | resource |
+| [aws_subnet.rds](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/subnet) | resource |
+| [aws_subnet.wordpress](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/subnet) | resource |
+| [aws_vpc.main](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/vpc) | resource |
+| [aws_availability_zones.az](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/data-sources/availability_zones) | data source |
 
 ## Inputs
 

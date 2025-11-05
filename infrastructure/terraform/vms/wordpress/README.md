@@ -26,7 +26,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_deployment_prefix"></a> [deployment\_prefix](#input\_deployment\_prefix) | prefix | `string` | n/a | yes |
-| <a name="input_private_subnet_id"></a> [private\_subnet\_id](#input\_private\_subnet\_id) | private instance id | `string` | n/a | yes |
+| <a name="input_wordpres_subnet_id"></a> [wordpres\_subnet\_id](#input\_wordpres\_subnet\_id) | private instance id | `list(string)` | n/a | yes |
 | <a name="input_wordpress_profile"></a> [wordpress\_profile](#input\_wordpress\_profile) | private profile | `string` | n/a | yes |
 | <a name="input_wordpress_sg"></a> [wordpress\_sg](#input\_wordpress\_sg) | private sg | `string` | n/a | yes |
 

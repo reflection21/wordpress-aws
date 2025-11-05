@@ -3,13 +3,16 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.17.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.17.0 |
 
 ## Modules
 
@@ -19,19 +22,24 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_lb.alb](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |
-| [aws_lb_listener.http_listener](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener) | resource |
-| [aws_lb_listener.https_listener](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener) | resource |
-| [aws_lb_listener_rule.adminer_rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule) | resource |
-| [aws_lb_listener_rule.api_rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule) | resource |
-| [aws_lb_listener_rule.www_rule](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule) | resource |
-| [aws_lb_target_group.adminer_tg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group) | resource |
-| [aws_lb_target_group.wordpress_tg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group) | resource |
-| [aws_lb_target_group_attachment.adminer_attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment) | resource |
-| [aws_lb_target_group_attachment.wordpress_attach](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment) | resource |
-| [aws_route53_record.lb_record](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
-| [aws_route53_record.lb_record_api](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
-| [aws_route53_record.lb_record_www](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_lb.alb](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb) | resource |
+| [aws_lb_listener.http_listener](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener) | resource |
+| [aws_lb_listener.https_listener](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener) | resource |
+| [aws_lb_listener_rule.adminer_rule](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener_rule) | resource |
+| [aws_lb_listener_rule.nexus_rule](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener_rule) | resource |
+| [aws_lb_listener_rule.sonar_rule](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener_rule) | resource |
+| [aws_lb_listener_rule.www_rule](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_listener_rule) | resource |
+| [aws_lb_target_group.adminer_tg](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group) | resource |
+| [aws_lb_target_group.nexus_tg](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group) | resource |
+| [aws_lb_target_group.sonarqube_tg](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group) | resource |
+| [aws_lb_target_group.wordpress_tg](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group) | resource |
+| [aws_lb_target_group_attachment.adminer_attach](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group_attachment) | resource |
+| [aws_lb_target_group_attachment.nexus_attach](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group_attachment) | resource |
+| [aws_lb_target_group_attachment.sonarqube_attach](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group_attachment) | resource |
+| [aws_lb_target_group_attachment.wordpress_attach](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/lb_target_group_attachment) | resource |
+| [aws_route53_record.lb_record](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route53_record) | resource |
+| [aws_route53_record.lb_record_api](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route53_record) | resource |
+| [aws_route53_record.lb_record_www](https://registry.terraform.io/providers/hashicorp/aws/6.17.0/docs/resources/route53_record) | resource |
 
 ## Inputs
 
