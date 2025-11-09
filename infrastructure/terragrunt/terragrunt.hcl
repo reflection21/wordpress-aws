@@ -29,9 +29,9 @@ remote_state {
   }
 }
 
-# Generate an AWS version block
-generate "version" {
-  path      = "version.tf"
+# Generate an AWS provider block
+generate "provider" {
+  path      = "provider.tf"
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 provider "aws" {

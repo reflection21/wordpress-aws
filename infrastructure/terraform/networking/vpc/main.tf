@@ -8,6 +8,7 @@ resource "aws_vpc" "main" {
     Name = "${var.deployment_prefix}-main"
   }
 }
+
 # public subnets
 resource "aws_subnet" "public" {
   count             = length(var.public_subnet_cidr)

@@ -9,7 +9,7 @@ resource "aws_kms_key" "kms_deployment_key" {
 {
     "Version": "2012-10-17",
     "Id": "${var.deployment_prefix}-key",
-    "Statement": [
+
         {
             "Sid": "Enable IAM User Permissions",
             "Effect": "Allow",
@@ -19,7 +19,7 @@ resource "aws_kms_key" "kms_deployment_key" {
             "Action": "kms:*",
             "Resource": "*"
         }
-    ]
+    ]gu
 }
 EOT
 }

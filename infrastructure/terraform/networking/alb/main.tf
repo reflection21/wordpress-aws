@@ -58,6 +58,7 @@ resource "aws_lb_target_group" "wordpress_tg" {
   }
 }
 
+
 # tg adminer
 resource "aws_lb_target_group" "adminer_tg" {
   name     = "adminer-tg"

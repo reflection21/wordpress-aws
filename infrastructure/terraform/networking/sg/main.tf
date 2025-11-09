@@ -117,3 +117,7 @@ resource "aws_security_group_rule" "extra_inbound_access" {
   cidr_blocks       = var.extra_cidr_blocks
   security_group_id = aws_security_group.rds.id
 }
+
+resource "aws" "name" {
+  
+}

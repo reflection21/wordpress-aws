@@ -11,7 +11,7 @@ dependency "vpc" {
   config_path = "../../networking/vpc"
 }
 
-dependency "kms" {
+        dependency "kms" {
   config_path = "../../kms"
 }
 
